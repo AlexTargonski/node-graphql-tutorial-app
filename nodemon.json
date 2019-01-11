@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_PASSWORD": "E880GtJB0DkmKjFc",
+    "MONGO_DB": "events-app-tutorial"
+  }
+}
