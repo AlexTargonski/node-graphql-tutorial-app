@@ -31,6 +31,7 @@ app.use(
         desc: String!
         price: Float!
         date: String!
+        creator: User!
       }
 
       input UserInput {
