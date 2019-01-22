@@ -5,11 +5,14 @@ import mongoose         from 'mongoose';
 
 import graphQlSchemas   from './graphql/schemas';
 import graphQlResolvers from './graphql/resolvers';
+import auth             from './graphql/middlewares/auth';
 
 const PORT = 8080;
 const app  = express();
 
 app.use(bodyParser.json());
+
+app.use(auth);
 
 app.use(
   '/graphiql',
