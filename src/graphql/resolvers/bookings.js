@@ -1,7 +1,7 @@
-import Booking       from '../../models/booking';
-import Event         from '../../models/event';
-import dateToString  from '../helpers/date';
-import { modifyBooking } from '../helpers/merge';
+import Booking                   from '../../models/booking';
+import Event                     from '../../models/event';
+import dateToString              from '../helpers/date';
+import { modifyBooking, modify } from '../helpers/merge';
 
 export default {
   bookings: async (args, req) => {
@@ -9,7 +9,7 @@ export default {
       throw new Error('Unauthenticated!');
     }
     try {
-      const bookings = await Booking.find();
+      const bookings = await Booking.find({user: req.userId});
       return bookings.map(booking => {
         return modifyBooking(booking);
       });
@@ -37,7 +37,7 @@ export default {
     if (!req.isAuth) {
       throw new Error('Unauthenticated!');
     }
-    
+
     try {
       const booking = await Booking.findById(args.bookingId).populate('event');
       const event = modify(booking.event);
